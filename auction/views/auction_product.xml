@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="auction_product_action" model="ir.actions.act_window">
+		<field name="name">Product</field>
+		<field name="res_model">auction.product</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="auction_product_view_tree" model="ir.ui.view">
+	    <field name="name">auction.product.tree</field>
+	    <field name="model">auction.product</field>
+	    <field name="arch" type="xml">
+	        <tree>
+	            <field name="name"/>
+	            <field name="start_price"/>
+	            <field name="current_price"/>
+	            <field name="salesperson"/>
+	            <field name="image" widget="image" class="oe_avatar" options="{'size': [100, 50]}"/>
+	        </tree>
+	    </field>
+	</record>
+
+	<record id="auction_product_form_view" model="ir.ui.view">
+		<field name="name">auction.product.form</field>
+		<field name="model">auction.product</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<field name="image" widget="image" class="oe_avatar" options="{'size': [300, 400]}"/>
+					<h1><field name="name"/></h1>
+					<group>
+					<field name="start_price"/>
+					<field name="current_price"/>
+					</group>
+					<notebook>
+						<page string="Details">
+							<group>
+								<field name="description"/>
+								<field name="salesperson"/>
+								<field name="buyer"/>
+								<field name="active"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>
