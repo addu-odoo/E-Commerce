@@ -26,11 +26,16 @@
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
+					<header>
+		    			<field name="state" widget="statusbar"/>
+	    			</header>
 					<field name="image" widget="image" class="oe_avatar" options="{'size': [300, 400]}"/>
 					<h1><field name="name"/></h1>
 					<group>
 					<field name="start_price"/>
-					<field name="current_price"/>
+					<field name="current_price" invisible='False'/>
+					<field name="selling_price"/>
+					<button type="action" name="%(auction_bid_action)d" string="Bid Now" class='oe_highlight'/>
 					</group>
 					<notebook>
 						<page string="Details">
@@ -40,6 +45,9 @@
 								<field name="buyer"/>
 								<field name="active"/>
 							</group>
+						</page>
+						<page string="Bid list">
+							<field name="bid_ids"/>
 						</page>
 					</notebook>
 				</sheet>
