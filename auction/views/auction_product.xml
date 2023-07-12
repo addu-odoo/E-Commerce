@@ -26,28 +26,32 @@
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
+				<h3 attrs="{'invisible':[('is_sold','=',False)]}">This product was sold Details below:</h3>
+					<widget name="web_ribbon" title="SOLD" bg_color="bg-danger" attrs="{'invisible':[('is_sold','=',False)]}"/>
 					<header>
-		    			<field name="state" widget="statusbar"/>
+						<button name="on_sold" type="object" string="Sold" attrs="{'invisible':[('is_sold','=',True)]}"/>
+		    			<field name="state" widget="statusbar" attrs="{'invisible':[('is_sold','=',True)]}"/>
 	    			</header>
 					<field name="image" widget="image" class="oe_avatar" options="{'size': [300, 400]}"/>
 					<h1><field name="name"/></h1>
 					<group>
-					<field name="start_price"/>
-					<field name="current_price" invisible='False'/>
-					<field name="selling_price"/>
-					<button type="action" name="%(auction_bid_action)d" string="Bid Now" class='oe_highlight'/>
+					<field name="start_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
+					<field name="current_price" invisible='False' attrs="{'invisible':[('is_sold','=',True)]}"/>
+					<field name="selling_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
+					<button type="action" name="%(auction_bid_action)d" string="Bid Now" class='oe_highlight' attrs="{'invisible':[('is_sold','=',True)]}"/>
 					</group>
 					<notebook>
 						<page string="Details">
 							<group>
-								<field name="description"/>
-								<field name="salesperson"/>
-								<field name="buyer"/>
-								<field name="active"/>
+								<field name="description" attrs="{'readonly':[('is_sold','=',True)]}"/>
+								<field name="salesperson" attrs="{'readonly':[('is_sold','=',True)]}"/>
+								<field name="buyer" attrs="{'readonly':[('is_sold','=',True)]}"/>
+								<field name="active" attrs="{'readonly':[('is_sold','=',True)]}"/>
+								<field name="is_sold"/>
 							</group>
 						</page>
 						<page string="Bid list">
-							<field name="bid_ids"/>
+							<field name="bid_ids" attrs="{'readonly':[('is_sold','=',True)]}"/>
 						</page>
 					</notebook>
 				</sheet>
