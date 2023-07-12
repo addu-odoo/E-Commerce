@@ -3,7 +3,7 @@
 	<record id="auction_bid_action" model="ir.actions.act_window">
 		<field name="name">Bid</field>
 		<field name="res_model">auction.bid</field>
-		<field name="view_mode">tree,form</field>
+		<field name="view_mode">form</field>
 	</record>
 
 	<record id="auction_bid_tree_view" model="ir.ui.view">
@@ -15,9 +15,6 @@
 				<field name="partner_id"/>
 				<field name="validity" />
 				<field name="date_deadline"/>
-				<button name="action_confirm" type="object" icon="fa-check" title='confirm'/>
-				<button name="action_Refused" type="object" icon="fa-times" title='refused'/>
-				<field name="status" />
 			</tree>
 		</field>
 	</record>
@@ -33,7 +30,6 @@
 	            <field name="partner_id" />
 	            <field name="validity" />
 	            <field name="date_deadline" />
-	            <field name="status" />
 	         </group>
 	       </sheet>
 	     </form>
