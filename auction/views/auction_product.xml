@@ -36,8 +36,8 @@
 					<h1><field name="name"/></h1>
 					<group>
 					<field name="start_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
-					<field name="current_price" invisible='False' attrs="{'invisible':[('is_sold','=',True)]}"/>
-					<field name="selling_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
+					<field name="current_price" attrs="{'invisible':[('is_sold','=',True)]}"/>
+					<field name="selling_price" readonly= '1' attrs="{'invisible':[('is_sold','=',False)]}"/>
 					<button type="action" name="%(auction_bid_action)d" string="Bid Now" class='oe_highlight' attrs="{'invisible':[('is_sold','=',True)]}"/>
 					</group>
 					<notebook>
@@ -45,7 +45,7 @@
 							<group>
 								<field name="description" attrs="{'readonly':[('is_sold','=',True)]}"/>
 								<field name="salesperson" attrs="{'readonly':[('is_sold','=',True)]}"/>
-								<field name="buyer" attrs="{'readonly':[('is_sold','=',True)]}"/>
+								<field name="bidder" readonly='1'/>
 								<field name="active" attrs="{'readonly':[('is_sold','=',True)]}"/>
 								<field name="is_sold"/>
 							</group>
