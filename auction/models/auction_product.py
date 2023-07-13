@@ -12,7 +12,7 @@ class auction_product(models.Model):
 	selling_price = fields.Float("Selling Price")
 	active = fields.Boolean("Active", default=False)
 	salesperson = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
-	buyer = fields.Many2one('res.partner', string='Buyer')
+	bidder = fields.Many2one('res.partner', string='Bidder name', compute="_compute_buyer", store=True)
 	image = fields.Image(string="Image")
 	bid_ids = fields.One2many("auction.bid", "product_id", string="Bid list")
 	state = fields.Selection(selection=[('sold','Sold'), ('unsold','Unsold')], default='unsold')
@@ -25,6 +25,14 @@ class auction_product(models.Model):
 				record.current_price = max(record.bid_ids.mapped('price'))
 			else:
 				record.current_price = 0
+
+	@api.depends('bid_ids')
+	def _compute_buyer(self):
+		for record in self:
+			if record.bid_ids:
+				record.bidder = record.bid_ids[0].partner_id
+			else:
+				record.bidder = False
 
 	def on_sold(self):
 		self.is_sold = True
