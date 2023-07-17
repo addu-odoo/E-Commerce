@@ -6,6 +6,8 @@
 		<field name="view_mode">tree,form</field>
 	</record>
 
+
+
 	<record id="auction_product_view_tree" model="ir.ui.view">
 	    <field name="name">auction.product.tree</field>
 	    <field name="model">auction.product</field>
@@ -34,6 +36,7 @@
 	    			</header>
 					<field name="image" widget="image" class="oe_avatar" options="{'size': [300, 400]}"/>
 					<h1><field name="name"/></h1>
+					<field name="type_ids" widget="many2many_tags" options="{'color_field' : 'color'}"/>
 					<group>
 					<field name="start_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
 					<field name="current_price" attrs="{'invisible':[('is_sold','=',True)]}"/>
