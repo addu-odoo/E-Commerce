@@ -9,6 +9,7 @@
         'security/ir.model.access.csv',
         'views/auction_product.xml',
         'views/auction_bid.xml',
+        'views/auction_product_type.xml',
         'views/auction_menus.xml'
     ]
 }

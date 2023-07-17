@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <odoo>
 	<menuitem id="auction_menu_root" name="Auction(Ebay)">
-		<menuitem id="Advertisement_menu" name="Products">
+		<menuitem id="Advertisement_menu" name="Info..">
 			<menuitem id="Product_model_menu_action" action="auction_product_action"/>
+			<menuitem id="Product_type_model_menu_action" action="product_type_action"/>
     	</menuitem>
 	</menuitem>
 </odoo>

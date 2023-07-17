@@ -17,6 +17,7 @@ class auction_product(models.Model):
 	bid_ids = fields.One2many("auction.bid", "product_id", string="Bid list")
 	state = fields.Selection(selection=[('sold','Sold'), ('unsold','Unsold')], default='unsold')
 	is_sold = fields.Boolean(string='Sold')
+	type_ids = fields.Many2many("auction.product.type", string="Property Types")
 
 	@api.depends("bid_ids")
 	def _compute_price(self):
