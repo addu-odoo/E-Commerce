@@ -10,6 +10,7 @@
         'views/auction_product.xml',
         'views/auction_bid.xml',
         'views/auction_product_type.xml',
+        'views/auction_product_category.xml',
         'views/auction_menus.xml'
     ]
 }
