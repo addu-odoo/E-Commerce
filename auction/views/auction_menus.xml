@@ -4,6 +4,7 @@
 		<menuitem id="Advertisement_menu" name="Info..">
 			<menuitem id="Product_model_menu_action" action="auction_product_action"/>
 			<menuitem id="Product_type_model_menu_action" action="product_type_action"/>
+			<menuitem id="Product_category_model_menu_action" action="product_category_type_action"/>
     	</menuitem>
 	</menuitem>
 </odoo>

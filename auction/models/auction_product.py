@@ -17,7 +17,8 @@ class auction_product(models.Model):
 	bid_ids = fields.One2many("auction.bid", "product_id", string="Bid list")
 	state = fields.Selection(selection=[('sold','Sold'), ('unsold','Unsold')], default='unsold')
 	is_sold = fields.Boolean(string='Sold')
-	type_ids = fields.Many2many("auction.product.type", string="Property Types")
+	type_ids = fields.Many2many("auction.product.type", string="Product Type")
+	categogy_ids = fields.Many2one("product.category", string="Product Categogy")
 
 	@api.depends("bid_ids")
 	def _compute_price(self):
@@ -31,7 +32,8 @@ class auction_product(models.Model):
 	def _compute_buyer(self):
 		for record in self:
 			if record.bid_ids:
-				record.bidder = record.bid_ids[0].partner_id
+				highest_bid = max(record.bid_ids, key=lambda bid: bid.price)
+				record.bidder = highest_bid.partner_id
 			else:
 				record.bidder = False
 

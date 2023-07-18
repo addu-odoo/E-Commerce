@@ -39,6 +39,7 @@
 					<field name="type_ids" widget="many2many_tags" options="{'color_field' : 'color'}"/>
 					<group>
 					<field name="start_price" attrs="{'readonly':[('is_sold','=',True)]}"/>
+					<field name="categogy_ids"/>
 					<field name="current_price" attrs="{'invisible':[('is_sold','=',True)]}"/>
 					<field name="selling_price" readonly= '1' attrs="{'invisible':[('is_sold','=',False)]}"/>
 					<button type="action" name="%(auction_bid_action)d" string="Bid Now" class='oe_highlight' attrs="{'invisible':[('is_sold','=',True)]}"/>
