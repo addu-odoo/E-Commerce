@@ -3,7 +3,7 @@
     'version': '1.0',
     'author': "Aditya Dubey",
 
-    'depends' : ['base'],
+    'depends' : ['base', 'mail'],
     'application': True,
     'data': [
         'security/ir.model.access.csv',
