@@ -4,8 +4,9 @@ class auction_product(models.Model):
 	_name = "auction.product"
 	_description = "Product details"
 	_log_access = False
+	_inherit = "mail.thread","mail.activity.mixin"
 
-	name = fields.Char("Name")
+	name = fields.Char("Name", tracking=True)
 	description = fields.Text("Description")
 	start_price = fields.Float("Start Price", required=True)
 	current_price = fields.Float("Current Bid Price", required=True, compute="_compute_price")
@@ -19,6 +20,14 @@ class auction_product(models.Model):
 	is_sold = fields.Boolean(string='Sold')
 	type_ids = fields.Many2many("auction.product.type", string="Product Type")
 	categogy_ids = fields.Many2one("product.category", string="Product Categogy")
+
+	def write(self, vals):
+		if 'is_sold' in vals:
+			if vals.get('is_sold'):
+				vals['state'] = 'sold'
+			else:
+				vals['state'] = 'unsold'
+		return super().write(vals)
 
 	@api.depends("bid_ids")
 	def _compute_price(self):
@@ -38,5 +47,6 @@ class auction_product(models.Model):
 				record.bidder = False
 
 	def on_sold(self):
+		self.state = 'sold'
 		self.is_sold = True
 		self.selling_price = self.current_price
