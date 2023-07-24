@@ -14,6 +14,7 @@ class auction_bid(models.Model):
 	product_id = fields.Many2one('auction.product', default=lambda self: self._get_default_product_id())
 	validity = fields.Integer("Validity(Days)", default=7)
 	date_deadline = fields.Date(string="Date Deadline", compute="_compute_date", inverse="_inverse_date")
+	product_category_ids = fields.Many2one(related="product_id.categogy_ids",store=True)
 
 	@api.model
 	def _get_default_product_id(self):

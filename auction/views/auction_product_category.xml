@@ -12,6 +12,7 @@
       <field name="arch" type="xml">
         <tree string="Property Types"> 
               <field name="name" />
+              <field name="sequence" widget="handle"/>
         </tree>
       </field>
     </record>
@@ -22,6 +23,11 @@
         <field name="arch" type="xml">
             <form string="Product">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    <button name="%(auction_bid_action)d" type="action" class="oe_stat_button"  icon="fa-money">
+                        <field string="Bids" name="bid_count" widget="statinfo"/>
+                    </button>      
+                    </div>
 					<h1><field name="name"/></h1>
                     <notebook>
                         <page string="Products">
