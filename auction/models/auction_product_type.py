@@ -6,5 +6,7 @@ class auction_product_type(models.Model):
     _log_access = False
     _order = "name"
 
+    _sql_constraints=[('unique_types','UNIQUE(name)','types name must be unique')]
+
     name = fields.Char("Product Type", required=True)
     color = fields.Integer("Color")

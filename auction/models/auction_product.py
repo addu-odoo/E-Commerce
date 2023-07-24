@@ -4,6 +4,7 @@ class auction_product(models.Model):
 	_name = "auction.product"
 	_description = "Product details"
 	_log_access = False
+	_order = "id desc"
 	_inherit = "mail.thread","mail.activity.mixin"
 
 	name = fields.Char("Name", tracking=True)
@@ -11,7 +12,7 @@ class auction_product(models.Model):
 	start_price = fields.Float("Start Price", required=True)
 	current_price = fields.Float("Current Bid Price", required=True, compute="_compute_price")
 	selling_price = fields.Float("Selling Price")
-	active = fields.Boolean("Active", default=False)
+	active = fields.Boolean("Active", default=True)
 	salesperson = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
 	bidder = fields.Many2one('res.partner', string='Bidder name', compute="_compute_buyer", store=True)
 	image = fields.Image(string="Image")
@@ -20,6 +21,12 @@ class auction_product(models.Model):
 	is_sold = fields.Boolean(string='Sold')
 	type_ids = fields.Many2many("auction.product.type", string="Product Type")
 	categogy_ids = fields.Many2one("product.category", string="Product Categogy")
+
+	_sql_constraints = [
+		('check_start_price', 'CHECK(start_price >= 0)', 'The Start Price must be strictyly positive')
+		]
+
+
 
 	def write(self, vals):
 		if 'is_sold' in vals:

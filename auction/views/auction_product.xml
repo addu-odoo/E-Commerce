@@ -37,11 +37,12 @@
 	    <field name="name">auction.product.tree</field>
 	    <field name="model">auction.product</field>
 	    <field name="arch" type="xml">
-	        <tree>
+	        <tree decoration-success="state=='unsold'" decoration-muted = "state == 'sold'">
 	            <field name="name"/>
 	            <field name="start_price"/>
 	            <field name="current_price"/>
 	            <field name="salesperson"/>
+	            <field name="state" invisible="1"/>
 	            <field name="image" widget="image" class="oe_avatar" options="{'size': [100, 50]}"/>
 	        </tree>
 	    </field>
