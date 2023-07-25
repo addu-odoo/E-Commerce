@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoice" inherit_id="auction.report_auction_bid">
+        <xpath expr="//t/t/t/div[@class='page']//div" position="inside"> 
+            <t t-if="product.state=='sold'">
+                <p>!!!invoice has already been created!!!</p>
+            </t>
+        </xpath>    
+    </template>
+</odoo>
