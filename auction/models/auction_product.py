@@ -1,4 +1,5 @@
 from odoo import fields,models,api
+from odoo.exceptions import UserError
 
 class auction_product(models.Model):
 	_name = "auction.product"
@@ -57,3 +58,8 @@ class auction_product(models.Model):
 		self.state = 'sold'
 		self.is_sold = True
 		self.selling_price = self.current_price
+
+	@api.ondelete(at_uninstall=False)
+	def ondelete_property(self):
+		if self.state == 'unsold':
+			raise UserError("Only sold properties can be deleted")
