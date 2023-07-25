@@ -12,6 +12,8 @@
         'views/auction_product_type.xml',
         'views/auction_product_category.xml',
         'views/auction_menus.xml',
-        'views/res_user_view.xml'
+        'views/res_user_view.xml',
+        'report/auction_product_report.xml',
+        'report/auction_product_templates.xml'
     ]
 }

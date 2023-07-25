@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_auction_bid">
+        <t t-foreach="docs" t-as="product">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>
+                            <span t-field="product.name"/>
+                        </h1>
+                        <div>
+                            <strong>Salesman: </strong>
+                            <span t-field="product.salesperson"/>
+                        </div>
+                        <div>
+                            <strong>Starting Price: </strong>
+                            <span t-field="product.start_price"/>
+                        </div>
+                        <div>
+                            <strong>Status: </strong>
+                            <span t-field="product.state"/>
+                        </div>
+                        <t t-set="bids" t-value="product.mapped('bid_ids')"/>
+                        <t t-call="auction.bid_table"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="bid_table">
+        <t t-if="bids">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Partner</th>
+                        <th>Validity(days)</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr t-foreach="bids" t-as="bid">
+                        <td>
+                            <span t-field="bid.price"/>
+                        </td>
+                        <td>
+                            <span t-field="bid.partner_id"/>
+                        </td>
+                        <td>
+                            <span t-field="bid.validity"/>
+                        </td>
+                        <td>
+                            <span t-field="bid.date_deadline"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+        <t t-else=""> No offers have been made yet :(</t>
+    </template>
+
+    <template id="report_product_user">
+        <t t-foreach="docs" t-as="product_user">
+            <t t-call="web.html_container">
+               <t t-call="web.external_layout">
+                   <div class="page">
+                       <h1>
+                            <strong>Salesman:</strong>
+                           <span t-field="product_user.name"/>
+                       </h1>
+                       <t t-set="products" t-value="product_user.mapped('product_ids')"/>
+                       <tr t-foreach="products" t-as="product">
+                           <div>
+                               <h2>
+                                   <span t-field="product.name"/>
+                               </h2>
+                               <div>
+                                   <strong>Start Price: </strong>
+                                   <span t-field="product.start_price"/>
+                               </div>
+                               <div>
+                                   <strong>status: </strong>
+                                   <span t-field="product.state"/>
+                               </div>
+                           </div>    
+                           <t t-set="bids" t-value="product.mapped('bid_ids')"/>
+                           <t t-call="auction.bid_table"/>
+                       </tr>    
+                       
+                   </div>
+               </t>    
+            </t> 
+        </t> 
+    </template>  
+
+</odoo>

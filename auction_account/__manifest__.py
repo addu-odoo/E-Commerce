@@ -7,7 +7,8 @@
     'depends' : [
         'auction',
         'account',
-    ],
+        ],
+    'data':['report/auction_product_templates.xml'],
     'installable ' : True,
     'application' : True,
     'auto_install': True
